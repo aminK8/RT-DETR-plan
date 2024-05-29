@@ -107,3 +107,7 @@ python tools/export_onnx.py -c configs/rtdetr/rtdetr_r18vd_6x_coco.yml -r path/t
 
 2. add `-t path/to/checkpoint` (optinal) to tuning rtdetr based on pretrained checkpoint. see [training script details](./tools/README.md).
 </details>
+
+
+python3 tools/train.py -c configs/rtdetr/rtdetr_r50vd_m_6x_coco_higharc.yml -t ~/RT-DETR-ZOO/rtdetr_r50vd_2x_coco_objects365_from_paddle.pth
+
