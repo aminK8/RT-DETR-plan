@@ -111,3 +111,7 @@ python tools/export_onnx.py -c configs/rtdetr/rtdetr_r18vd_6x_coco.yml -r path/t
 
 python3 tools/train.py -c configs/rtdetr/rtdetr_r50vd_m_6x_coco_higharc.yml -t ~/RT-DETR-ZOO/rtdetr_r50vd_2x_coco_objects365_from_paddle.pth
 
+watch -n 1 nvidia-smi
+
+python3 tools/train.py -c configs/rtdetr/rtdetr_r50vd_m_6x_coco_higharc_test.yml -r output/rtdetr_r50vd_m_6x_coco_higharc/checkpoint0020.pth --test-only
+
