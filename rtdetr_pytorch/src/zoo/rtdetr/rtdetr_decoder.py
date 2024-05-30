@@ -302,7 +302,8 @@ class RTDETRTransformer(nn.Module):
                  eval_spatial_size=None,
                  eval_idx=-1,
                  eps=1e-2, 
-                 aux_loss=True):
+                 aux_loss=True,
+                 task="detection"):
 
         super(RTDETRTransformer, self).__init__()
         assert position_embed_type in ['sine', 'learned'], \
@@ -312,6 +313,7 @@ class RTDETRTransformer(nn.Module):
         for _ in range(num_levels - len(feat_strides)):
             feat_strides.append(feat_strides[-1] * 2)
 
+        self.task = task
         self.hidden_dim = hidden_dim
         self.nhead = nhead
         self.feat_strides = feat_strides
@@ -562,6 +564,8 @@ class RTDETRTransformer(nn.Module):
                 out['dn_aux_outputs'] = self._set_aux_loss(dn_out_logits, dn_out_bboxes)
                 out['dn_meta'] = dn_meta
 
+        if self.task == "segmentation":
+            return out, memory
         return out
 
 

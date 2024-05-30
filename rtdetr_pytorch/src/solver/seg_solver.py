@@ -22,6 +22,18 @@ class SegSolver(BaseSolver):
 
         args = self.cfg 
         
+        for param in self.model.parameters():
+            param.requires_grad = False
+            
+        for param in self.model.bbox_attention.parameters():
+            param.requires_grad = True
+
+        for param in self.model.mask_head.parameters():
+            param.requires_grad = True
+
+        for param in self.model.post_process_segm.parameters():
+            param.requires_grad = True
+            
         n_parameters = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
         print('number of params:', n_parameters)
 

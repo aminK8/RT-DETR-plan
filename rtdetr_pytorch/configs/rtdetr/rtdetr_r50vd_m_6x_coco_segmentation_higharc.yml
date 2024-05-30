@@ -3,7 +3,7 @@ __include__: [
   '../runtime.yml',
   './include/dataloader.yml',
   './include/optimizer.yml',
-  './include/rtdetr_r50vd.yml',
+  './include/rtdetr_r50vd_seg.yml',
 ]
 
 output_dir: ./output/rtdetr_r50vd_m_6x_coco_higharc
