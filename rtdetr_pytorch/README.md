@@ -111,7 +111,25 @@ python tools/export_onnx.py -c configs/rtdetr/rtdetr_r18vd_6x_coco.yml -r path/t
 
 python3 tools/train.py -c configs/rtdetr/rtdetr_r50vd_m_6x_coco_higharc.yml -t ~/RT-DETR-ZOO/rtdetr_r50vd_2x_coco_objects365_from_paddle.pth
 
-watch -n 1 nvidia-smi
 
 python3 tools/train.py -c configs/rtdetr/rtdetr_r50vd_m_6x_coco_higharc_test.yml -r output/rtdetr_r50vd_m_6x_coco_higharc/checkpoint0020.pth --test-only
 
+
+watch -n 1 nvidia-smi
+
+Training time 1:49:27
+
+IoU metric: bbox
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.891
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.975
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.956
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.785
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.952
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.993
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.722
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.914
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.917
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.832
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.967
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.995
+best_stat:  {'epoch': 70, 'coco_eval_bbox': 0.8911904269234892}

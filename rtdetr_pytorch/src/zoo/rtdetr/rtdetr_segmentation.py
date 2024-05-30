@@ -15,6 +15,7 @@ import torchvision
 if version.parse(torchvision.__version__) < version.parse('0.7'):
     from torchvision.ops import _new_empty_tensor
     from torchvision.ops.misc import _output_size
+from src.zoo.rtdetr.rtdetr import RTDETR
 
 
 __all__ = ['RTDETRsegm', 'NestedTensor']
@@ -114,7 +115,7 @@ def _max_by_axis(the_list):
 
 @register
 class RTDETRsegm(nn.Module):
-    def __init__(self, detr, freeze_detr=False):
+    def __init__(self, detr: RTDETR, freeze_detr=False):
         super().__init__()
         self.detr = detr
 
@@ -152,6 +153,13 @@ class RTDETRsegm(nn.Module):
 
         out["pred_masks"] = outputs_seg_masks
         return out
+    
+    def deploy(self, ):
+        self.eval()
+        for m in self.modules():
+            if hasattr(m, 'convert_to_deploy'):
+                m.convert_to_deploy()
+        return self 
     
 
 class MaskHeadSmallConv(nn.Module):
